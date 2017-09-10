@@ -1,42 +1,33 @@
-import lugares.*
 import musicos.*
 
 class Presentacion {
+	
 	var fecha
 	var lugar
-	var musicos = #{}
+	var musicosPresentes
+	var capacidad
 	
-	method fecha() {
-		return fecha
+	constructor (unaFecha,unLugar){
+		fecha = unaFecha
+		lugar = unLugar
+		
+		if( lugar == "Luna Park"){	
+			capacidad = 9290
+			musicosPresentes = #{luisAlberto,joaquin,lucia}
+		}
+		
+		if( lugar = "La Trastienda"){
+			capacidad = 400
+			musicosPresentes = #{luisAlberto,joaquin,lucia}
+		}
+		
+		
+		else( unaFecha.dayofWeek() == 6){
+			capacidad = 700
+			musicosPresentes = #{luisAlberto,joaquin,lucia}	
+		}    
 	}
 	
-	method fecha(nuevaFecha) {
-		fecha = nuevaFecha
-	}
+	method capacidad(){return capacidad}
 	
-	method lugar() {
-		return lugar
-	}
-	
-	method lugar(nuevoLugar) {
-		lugar = nuevoLugar
-	}
-	
-	method agregarMusicos(musico) {
-		musicos.add(musico)
-	}
 }
-
-const lunaFest = new presentacion()
-lunaFest.fecha("20/04/2017")
-lunaFest.lugar(lunaPark)
-lunaFest.agregarMusico(luisAlberto)
-lunaFest.agregarMusico(lucia)
-lunaFest.agregarMusico(joaquin)
-
-const trastiendaFest = new presentacion()
-trastiendaFest.fecha("15/11/2017")
-trastiendaFest.lugar(laTrastienda)
-trastiendaFest.agregarMusico(luisAlberto)
-trastiendaFest.agregarMusico(lucia)
-trastiendaFest.agregarMusico(joaquin)                              //repito logica

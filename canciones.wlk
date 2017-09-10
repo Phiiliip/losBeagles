@@ -1,28 +1,32 @@
+import musicos.*
+
 class Cancion {
-	var duracion
-	var letra
+
+var duracion
+var letra
 	
-	method duracion() {
-		return duracion
+	constructor(elNombre){
+		
+		if(elNombre == "Cisne"){
+		
+		
+		duracion = 312
+		letra = 
+		"hoy el viento se abrio quedo vacio el aire una vez mas y el manantial broto y nadie esta aqui y puedo ver que solo estallan las hojas al brillar"
+			
+		}
+		
+		if(elNombre == "La Familia"){
+		duracion = 264
+		letra =
+		"quiero brindar por mi gente sencilla, por el amor brindo por la familia"
+		
+			
+		}
 	}
-	
-	method duracion(nuevaDuracion) {
-		duracion = nuevaDuracion
-	}
-	
-	method letra() {
-		return letra
-	}
-	
-	method letra(nuevaLetra) {
-		letra = nuevaLetra
-	}
+
+method duracion(){ return duracion}
+
+method letra(){ return letra}
+
 }
-
-const cisne = new Cancion()
-cisne.duracion(312)
-cisne.letra("hoy el viento se abrió quedó vacío el aire una vez más y el manantial brotó y nadie está aquí y puedo ver que solo estallan las hojas al brillar")
-
-const laFamilia = new Cancion()
-laFamilia.duracion(264)
-laFamilia.letra("Quiero brindar por mi gente sencilla, por el amor brindo por la familia")
