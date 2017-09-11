@@ -1,0 +1,181 @@
+import musicos.*
+import canciones.*
+import presentaciones.*
+import guitarras.*
+import lugares.*
+
+describe "grupo de test" {
+
+method fender() {
+	return new Guitarra(10)
+}
+	
+method gibsonSana() {
+	return new Guitarra(15)
+}
+
+method gibsonRota() {
+	return new Guitarra(5)
+}
+
+method cisne() {
+	return new Cancion(312, self.letraCisne())
+}
+
+method letraCisne() {
+	return "hoy el viento se abrió quedó vacío el aire una vez más y el manantial brotó y nadie está aquí y puedo ver que solo estallan las hojas al brillar"
+}
+
+method laFamilia() {
+	return new Cancion(264, self.letraLaFamilia())
+}
+
+method letraLaFamilia() {
+	return "Quiero brindar por mi gente sencilla, por el amor brindo por la familia"
+}
+
+method lunaFest() {
+	return new Presentacion(new Date(20, 4, 2017), lunaPark)
+}
+
+method laTrastiendaFest() {
+	return new Presentacion(new Date(15, 11, 2017), laTrastienda)
+}
+
+method agregarTodosLosMusicos(unaPresentacion) {
+	
+	unaPresentacion.agregarMusico(joaquin)
+	unaPresentacion.agregarMusico(lucia)
+	unaPresentacion.agregarMusico(luisAlberto)
+}
+
+method cincoDeAgosto2017() {
+	
+	return new Date(5, 8, 2017)
+}
+
+test "habilidad de joaquin con pimpinela" {
+
+	assert.equals(25, joaquin.habilidad())
+}
+
+test "habilidad de joaquin como solista" {
+	
+	joaquin.saleDelGrupo("Pimpinela") 
+	assert.equals(20, joaquin.habilidad())
+}
+
+test "habilidad de lucia en grupo" {
+	
+	assert.equals(50, lucia.habilidad())
+}
+
+test "habilidad de lucia como solista" {
+	
+	lucia.saleDelGrupo("Pimpinela") 
+	assert.equals(70, lucia.habilidad())
+}
+
+test "habilidad de luis alberto con fender" {
+	
+	luisAlberto.suGuitarraEs(self.fender())
+	assert.equals(80, luisAlberto.habilidad())
+}
+
+test "habilidad de luis alberto con gibson sana" {
+	
+	luisAlberto.suGuitarraEs(self.gibsonSana())
+	assert.equals(100, luisAlberto.habilidad())
+}
+
+test "habilidad de luis alberto con gibson rota" {
+	
+	luisAlberto.suGuitarraEs(self.gibsonRota())
+	assert.equals(40, luisAlberto.habilidad())
+}
+
+test "joaquin interpreta bien la familia?"{
+	
+	assert.notThat(joaquin.interpretaBien(self.laFamilia()))
+}
+
+test "joaquin interpreta bien cisne?"{
+	
+	assert.that(joaquin.interpretaBien(self.cisne()))
+}
+
+test "lucia interpreta bien la familia?"{
+	
+	assert.that(lucia.interpretaBien(self.laFamilia()))
+}
+
+test "lucia interpreta bien cisne?"{
+	
+	assert.notThat(lucia.interpretaBien(self.cisne()))
+}
+
+test "luis alberto interpreta bien la familia?"{
+	
+	assert.that(luisAlberto.interpretaBien(self.laFamilia()))
+}
+
+test "luis alberto interpreta bien cisne?"{
+	
+	assert.that(luisAlberto.interpretaBien(self.cisne()))
+}
+
+test "cuanto cobra joaquin en el lunaFest?" {
+	
+	self.agregarTodosLosMusicos(self.lunaFest())
+	assert.equals(50, joaquin.cobra(self.lunaFest()))
+}
+
+test "cuanto cobra joaquin si toca solo" {
+	
+	self.laTrastiendaFest().agregarMusico(joaquin)
+	assert.equals(100, joaquin.cobra(self.laTrastiendaFest()))
+}
+
+test "cuanto cobra lucia en el lunaFest?" {
+	
+	self.agregarTodosLosMusicos(self.lunaFest())
+	assert.equals(500, lucia.cobra(self.lunaFest()))
+}
+
+test "cuanto cobra lucia si toca solo" {
+	
+	self.agregarTodosLosMusicos(self.laTrastiendafest())
+	assert.equals(400, lucia.cobra(self.laTrastiendaFest()))
+}
+
+test "cuanto cobra luisAlberto en el lunaFest?" {
+	
+	self.agregarTodosLosMusicos(self.lunaFest())
+	assert.equals(1000, luisAlberto.cobra(self.lunaFest()))
+}
+
+test "cuanto cobra luisAlberto si toca solo" {
+	
+	self.agregarTodosLosMusicos(self.laTratiendaFest())
+	assert.equals(1200, luisAlberto.cobra(self.laTrastiendaFest()))
+}
+
+
+test "capacidad de la trastienda 5/8/17" {
+	
+	assert.equals(700, laTrastienda.capacidad(self.cincoDeAgosto2017()))
+}
+
+test "costo total del lunaFest" {
+	
+	self.agregarTodosLosMusicos(self.lunaFest())
+	assert.equals(1550, self.lunaFest().costoTotal(self.lunaFest()))
+}
+
+test "costo total del laTrastiendaFest" {
+	
+	self.agregarTodosLosMusicos(self.laTrastiendaFest())
+	assert.equals(1550, self.laTrastiendaFest().costoTotal(self.laTrastiendaFest()))
+}
+
+}
