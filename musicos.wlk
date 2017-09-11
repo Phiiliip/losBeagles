@@ -3,14 +3,14 @@ import canciones.*
 
 object joaquin {
 	
-	var grupo = "Pimpinela"
-	var habilidad = 20
+	var grupo = #{"Pimpinela"}
+	var habilidad = 25
 	var cobra = 50
 	
     method habilidad(){
 		
-		if(grupo != ""){
-			return habilidad +5
+		if(grupo.isEmpty()){
+			return habilidad -5
 		}
 		else{return habilidad}
     }
@@ -22,25 +22,36 @@ object joaquin {
 	
     method cobra(presentacion){
 	   
-	    if(grupo == ""){
-			return cobra + 50
+	    if(self.tocaSolo(presentacion)){
+			cobra += 50
 		}
 		
-		else{return cobra}
-	    	
-    }   
+		return cobra  	
+    }  
+    
+    method tocaSolo(presentacion) {
+    	return presentacion.musicosPresentes().size() == 1
+    }
+    
+     method grupo() {
+     	return grupo
+     } 
+    
+    method saleDelGrupo(grupoDejado) {                  
+		grupo.remove(grupoDejado)
+	}
 }
 
 object lucia {
 	
-	var grupo = "Pimpinela"
-	var habilidad = 70
+	var grupo = #{"Pimpinela"}
+	var habilidad = 50
 	var cobra = 400
 	
 	method habilidad(){
 		
-		if(grupo != ""){
-			return habilidad - 20
+		if(grupo.isEmpty()){
+			return habilidad + 20
 		}
 		
 		else{return habilidad}
@@ -58,9 +69,16 @@ object lucia {
 		}
 		
 		else{return cobra}	
-     }   
+     }
+     
+     method grupo() {
+     	return grupo
+     }
+     
+     method saleDelGrupo(grupoDejado) {                  //para mi puede cantar solo sin tener que salir del grupo o banda
+		grupo.remove(grupoDejado)
+	}   
 }
-
 object luisAlberto {
 	
 	var habilidad 
