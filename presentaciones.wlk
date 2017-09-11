@@ -4,30 +4,37 @@ class Presentacion {
 	
 	var fecha
 	var lugar
-	var musicosPresentes
+	var musicosPresentes = #{}
 	var capacidad
 	
 	constructor (unaFecha,unLugar){
 		fecha = unaFecha
-		lugar = unLugar
+		lugar = unLugar 
 		
-		if( lugar == "Luna Park"){	
-			capacidad = 9290
-			musicosPresentes = #{luisAlberto,joaquin,lucia}
-		}
-		
-		if( lugar = "La Trastienda"){
-			capacidad = 400
-			musicosPresentes = #{luisAlberto,joaquin,lucia}
-		}
-		
-		
-		else( unaFecha.dayofWeek() == 6){
-			capacidad = 700
-			musicosPresentes = #{luisAlberto,joaquin,lucia}	
-		}    
+		capacidad = unLugar.capacidad(unaFecha)  
 	}
 	
-	method capacidad(){return capacidad}
+	method capacidad() {
+		return capacidad  
+	}
+	
+	method agregarMusico(unMusico) {
+		musicosPresentes.add(unMusico)
+	}
+	
+	method musicosPresentes() {
+		return musicosPresentes
+	}
+	
+	method costoTotal(unaPresentacion) {
+		
+		return musicosPresentes.sum ({
+			musico => musico.cobra(unaPresentacion)
+		})
+	}
+	
+	method fecha() {
+		return fecha
+	}
 	
 }
